@@ -1,0 +1,90 @@
+#!/bin/bash
+set -euo pipefail
+
+# OpenFOAM helpers
+. "$WM_PROJECT_DIR/bin/tools/RunFunctions"
+
+application=$(getApplication)
+
+echo ">>> [START] $application  | Case: $(pwd)"
+echo ">>> Start Time: $(date)"
+
+# --- tiny timing helpers
+now() { date +%s; }
+time_runApplication() {  # $1: label  $2..: command for runApplication
+  local label="$1"; shift
+  local t0=$(now)
+  echo ">>> [$label] start"
+  runApplication "$@"
+  local t1=$(now)
+  local dt=$((t1 - t0))
+  eval "TIME_${label}=${dt}"
+  echo ">>> [$label] took ${dt}s"
+}
+time_runParallel() {     # $1: label
+  local label="$1"
+  local t0=$(now)
+  echo ">>> [$label] start"
+  runParallel "$application"
+  local t1=$(now)
+  local dt=$((t1 - t0))
+  eval "TIME_${label}=${dt}"
+  echo ">>> [$label] took ${dt}s"
+}
+
+# clean old logs (do not remove results)
+rm -f log.blockMesh log.setFields log.decomposePar log.reconstructPar "log.$application" log.parallel || true
+
+T0=$(now)
+
+# 1) Mesh
+time_runApplication blockMesh blockMesh
+# runApplication checkMesh -all   # (optional)
+
+# 2) setFields (only if dict exists)
+if [ -f system/setFieldsDict ]; then
+  time_runApplication setFields setFields
+else
+  TIME_setFields=0
+fi
+
+# 3) Decide parallel/serial
+nProcs=1
+if [ -f system/decomposeParDict ]; then
+  nProcs=$(foamDictionary system/decomposeParDict -entry numberOfSubdomains -value 2>/dev/null || echo 1)
+fi
+
+if [ "$nProcs" -gt 1 ]; then
+  echo ">>> Parallel run with $nProcs ranks"
+  time_runApplication decomposePar decomposePar -force
+  time_runParallel   runParallel
+  time_runApplication reconstructPar reconstructPar -newTimes
+else
+  echo ">>> Serial run"
+  TIME_decomposePar=0
+  TIME_runParallel=0
+  TIME_reconstructPar=0
+  time_runApplication runSerial "$application"
+fi
+
+# 4) optional post-processing hook
+if [ -x ./Allpost ]; then
+  time_runApplication Allpost ./Allpost
+else
+  TIME_Allpost=0
+fi
+
+T1=$(now)
+TOTAL=$((T1 - T0))
+
+echo
+echo ">>> [TIME SUMMARY]"
+printf "  blockMesh       : %6ss\n" "${TIME_blockMesh:-0}"
+printf "  setFields       : %6ss\n" "${TIME_setFields:-0}"
+printf "  decomposePar    : %6ss\n" "${TIME_decomposePar:-0}"
+printf "  runParallel     : %6ss\n" "${TIME_runParallel:-0}"
+printf "  reconstructPar  : %6ss\n" "${TIME_reconstructPar:-0}"
+printf "  runSerial       : %6ss\n" "${TIME_runSerial:-0}"
+printf "  Allpost         : %6ss\n" "${TIME_Allpost:-0}"
+printf "  TOTAL           : %6ss\n" "$TOTAL"
+echo ">>> [DONE] $application | End: $(date)"

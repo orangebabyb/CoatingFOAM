@@ -1,0 +1,32 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format          ascii;
+    class           dictionary;
+    object          decomposeParDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+numberOfSubdomains 16;
+
+decomposer      hierarchical;
+
+distributor     ptscotch;
+
+hierarchicalCoeffs
+{
+    n     (8 2 1);   // x:8, y:2, z:1 (不要切 z)
+    delta 0.001;
+    order xyz;
+}
+
+distributed no;
+roots ();
+
+// ************************************************************************* //
