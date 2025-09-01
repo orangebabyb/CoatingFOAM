@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+. "$WM_PROJECT_DIR/bin/tools/CleanFunctions"
+
+cleanCase           # keeps 0/, constant/, system/
+rm -f log.blockMesh log.setFields log.decomposePar log.reconstructPar log.parallel "log."* 2>/dev/null || true
+rm -rf processor* postProcessing 2>/dev/null || true
+rm -f core.* gmon.out* callgrind.out.* 2>/dev/null || true
+rm -rf vtune.* 2>/dev/null || true
