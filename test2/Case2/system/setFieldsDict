@@ -1,0 +1,28 @@
+FoamFile { 
+    version 2.0;
+    format ascii;
+    class dictionary;
+    object setFieldsDict;
+}
+
+defaultFieldValues
+(
+    volScalarFieldValue fi 1
+    //volVectorFieldValue U (0 0 0)
+    //volScalarFieldValue p 0
+
+);
+
+regions
+(
+    boxToCell
+    {
+        box (0 0 0) (0.025 0.001 0.001);  // radius=2.5cm, 高度=0.001m
+        fieldValues 
+        (
+            volScalarFieldValue fi -1
+            //volVectorFieldValue U (0 0 0)
+            //volScalarFieldValue p 0
+        );
+    }
+);

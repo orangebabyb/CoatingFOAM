@@ -1,0 +1,20 @@
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      fi;
+}
+dimensions      [0 0 0 0 0 0 0];
+internalField   uniform 0; 
+boundaryField
+{
+    borders
+    {
+        type            zeroGradient;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}

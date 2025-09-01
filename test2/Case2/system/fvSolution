@@ -1,0 +1,77 @@
+FoamFile { 
+    version 2.0;
+    format ascii;
+    class dictionary;
+    object fvSolution; 
+}
+
+solvers
+{
+// Initial
+  p
+  {
+    solver          GAMG;
+    preconditioner  DIC;
+    tolerance       1e-6;
+    relTol          0;
+
+    smoother                DICGaussSeidel;
+    nPreSweeps              0;
+    nPostSweeps             2;
+    nFinestSweeps           2;
+    cacheAgglomeration      true;
+    nCellsInCoarsestLevel   10;
+    agglomerator            faceAreaPair;
+    mergeLevels             1;
+  }
+  U
+  {
+    solver          PBiCGStab;
+    preconditioner  DILU;
+    // solver          smoothSolver;  
+    // smoother        symGaussSeidel;
+    tolerance       1e-6;
+    relTol          0;
+  }
+  fi
+  {
+    solver          PBiCGStab;
+    preconditioner  DILU;
+    // solver          smoothSolver;  
+    // smoother        symGaussSeidel;
+    tolerance       1e-6;
+    relTol          0;
+  }
+  // Final
+  pFinal
+  {
+    $p;    
+    relTol 0;    
+  }
+  UFinal
+  {
+    $U;          
+    relTol 0;       
+  }
+  fiFinal
+  {
+    $fi;          
+    relTol 0;
+  }
+}
+
+PIMPLE
+{
+  nCorrectors     2;
+  nNonOrthCorr    1;
+  nNonOrthogonalCorrectors 1;
+  momentumPredictor yes;
+  consistent        yes;
+
+  residualControl
+  {
+      p   1e-6;
+      U   1e-6;
+      fi  1e-6;
+  }
+}
