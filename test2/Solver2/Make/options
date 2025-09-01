@@ -1,0 +1,16 @@
+EXE_INC = \
+    -I$(WM_PROJECT_DIR)/src/finiteVolume/lnInclude \
+    -I$(WM_PROJECT_DIR)/src/fvConstraints/lnInclude \
+    -I$(WM_PROJECT_DIR)/src/meshTools/lnInclude \
+    -I$(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude \
+    -I$(WM_PROJECT_DIR)/src/OSspecific/POSIX/lnInclude \
+    -I/usr/local/cuda-12.9/include \
+    -std=c++17 \
+
+EXE_LIBS = \
+    -L/opt/openfoam10/platforms/linux64GccDPInt32Opt/lib \
+    -lfvConstraints \
+    -lfvModels \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lOpenFOAM
