@@ -16,7 +16,7 @@ deltaT          1e-6; //1e-4
 adjustTimeStep  no;
 
 writeControl    runTime;  
-writeInterval   0.001;
+writeInterval   0.01;
 
 writeFormat      ascii;
 //writeFormat     binary;

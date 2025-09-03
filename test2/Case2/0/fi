@@ -26024,7 +26024,19 @@ internalField   nonuniform List<scalar>
 
 boundaryField
 {
-    borders
+    top
+    {
+        type            symmetryPlane;
+    }
+    substrate
+    {
+        type            zeroGradient;
+    }
+    left
+    {
+        type            zeroGradient;
+    }
+    right
     {
         type            zeroGradient;
     }

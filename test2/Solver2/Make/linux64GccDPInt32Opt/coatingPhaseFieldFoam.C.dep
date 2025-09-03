@@ -11,6 +11,7 @@ createFields.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvModels.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvConstraints.H \
+updateProperties.H \
 UEqn.H \
 pEqn.H \
 fiEqn.H \
@@ -807,6 +808,7 @@ createFields.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvModels.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvConstraints.H :
+updateProperties.H :
 UEqn.H :
 pEqn.H :
 fiEqn.H :

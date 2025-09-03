@@ -9,7 +9,19 @@ dimensions      [0 0 0 0 0 0 0];
 internalField   uniform 0; 
 boundaryField
 {
-    borders
+    substrate
+    {
+        type            zeroGradient;
+    }
+    top
+    {
+        type            symmetryPlane;
+    }
+    right
+    {
+        type            zeroGradient;
+    }
+    left
     {
         type            zeroGradient;
     }

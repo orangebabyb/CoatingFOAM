@@ -8,7 +8,7 @@ FoamFile {
 defaultFieldValues
 (
     volScalarFieldValue fi 1
-    //volVectorFieldValue U (0 0 0)
+    volVectorFieldValue U (0 0 0)
     //volScalarFieldValue p 0
 
 );
@@ -21,7 +21,7 @@ regions
         fieldValues 
         (
             volScalarFieldValue fi -1
-            //volVectorFieldValue U (0 0 0)
+            volVectorFieldValue U (0 0 0)
             //volScalarFieldValue p 0
         );
     }

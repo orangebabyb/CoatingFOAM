@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         while (pimple.loop())
         {
             // --- update property
-            //#include "updateProperties.H"
+            #include "updateProperties.H"
 
             // --- Momentum equation
             #include "UEqn.H"

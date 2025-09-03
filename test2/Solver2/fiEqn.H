@@ -22,3 +22,5 @@ fvScalarMatrix fiEqn
 
 fiEqn.relax();
 fiEqn.solve();
+fi = min(max(fi, scalar(-1.0)), scalar(1.0));
+fi.correctBoundaryConditions();
