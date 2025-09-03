@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         // Solve fi, U, p
         {
             // --- Phase-field equation
-            #include "fiEqn.H"
+            //#include "fiEqn.H"
 
             // --- update property
             #include "updateProperties.H"
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
             #include "pEqn.H"
 
             // --- Phase-field equation
-            //#include "fiEqn.H"
+            #include "fiEqn.H"
         }
 
         runTime.write();

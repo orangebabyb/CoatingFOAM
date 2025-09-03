@@ -10,12 +10,12 @@ application     coatingPhaseFieldFoam;
 startFrom       startTime;
 startTime       0;
 stopAt          endTime;
-endTime         1e-1;
+endTime         0.1;
 
-deltaT          2e-6; //1e-4
+deltaT          5e-6; //1e-4
 
 writeControl    runTime;  
-writeInterval   1e-3;
+writeInterval   1e-2;
 
 writeFormat      ascii;
 //writeFormat     binary;

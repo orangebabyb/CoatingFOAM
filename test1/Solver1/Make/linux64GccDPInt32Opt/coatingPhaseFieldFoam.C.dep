@@ -12,10 +12,10 @@ createFields.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvModels.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvConstraints.H \
-fiEqn.H \
 updateProperties.H \
 UEqn.H \
 pEqn.H \
+fiEqn.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/parRun.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/Time.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/fvMesh.H \
@@ -804,10 +804,10 @@ createFields.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvModels.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createFvConstraints.H :
-fiEqn.H :
 updateProperties.H :
 UEqn.H :
 pEqn.H :
+fiEqn.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/parRun.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/Time.H :
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/fvMesh.H :

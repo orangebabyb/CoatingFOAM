@@ -68,11 +68,12 @@ else
 fi
 
 # 4) optional post-processing hook
-if [ -x ./Allpost ]; then
-  time_runApplication Allpost ./Allpost
-else
-  TIME_Allpost=0
-fi
+time_runApplication touchFoam touch coating.foam
+# if [ -x ./Allpost ]; then
+#   time_runApplication Allpost ./Allpost
+# else
+#   TIME_Allpost=0
+# fi
 
 T1=$(now)
 TOTAL=$((T1 - T0))
@@ -85,6 +86,7 @@ printf "  decomposePar    : %6ss\n" "${TIME_decomposePar:-0}"
 printf "  runParallel     : %6ss\n" "${TIME_runParallel:-0}"
 printf "  reconstructPar  : %6ss\n" "${TIME_reconstructPar:-0}"
 printf "  runSerial       : %6ss\n" "${TIME_runSerial:-0}"
-printf "  Allpost         : %6ss\n" "${TIME_Allpost:-0}"
+printf "  touchFoam       : %6ss\n" "${TIME_touchFoam:-0}"
+#printf "  Allpost         : %6ss\n" "${TIME_Allpost:-0}"
 printf "  TOTAL           : %6ss\n" "$TOTAL"
 echo ">>> [DONE] $application | End: $(date)"

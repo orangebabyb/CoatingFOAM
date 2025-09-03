@@ -7,7 +7,7 @@ psi = - sqr(epsilon) * fvc::laplacian(fi) + (sqr(fi) - scalar(1.0))*fi;
 //   + (sqr(fi) - scalar(1.0)) * fi;
 
 // chi * lambda
-const dimensionedScalar M = chi * lambda;
+dimensionedScalar M = chi * lambda;
 
 // fi equation
 fvScalarMatrix fiEqn

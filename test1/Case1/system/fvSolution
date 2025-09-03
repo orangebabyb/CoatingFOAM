@@ -65,12 +65,12 @@ SIMPLE
     nNonOrthogonalCorrectors 2;   // 網格若較差可設 2
     pRefCell        0;            // 若封閉域需設參考壓力
     pRefValue       0;
-    residualControl // 自動停條件（可選）
-    {
-        p   1e-6;
-        U   1e-6;
-        fi  1e-6;
-    }
+    // residualControl // 自動停條件（可選）
+    // {
+    //     p   1e-6;
+    //     U   1e-6;
+    //     fi  1e-6;
+    // }
 }
 
 relaxationFactors
